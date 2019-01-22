@@ -320,15 +320,6 @@ public class GCModel implements Serializable {
     }
 
     /**
-     * Returns an iterator to all vm operation events.
-     *
-     * @return iterator to all vm operation events
-     */
-    public Iterator<AbstractGCEvent<?>> getVmOperationsEvents() {
-        return vmOperationEvents.iterator();
-    }
-
-    /**
      * Returns an iterator to all concurrent gc events.
      *
      * @return iterator to all concurrent gc events.
