@@ -280,13 +280,6 @@ public class GCModel implements Serializable {
         this.fileInformation.setFileInformation(readFileInformation(url));
     }
 
-    public boolean isDifferent(File otherFile) {
-        // we just ignore the file name for now...
-        FileInformation fileInformation = new FileInformation(otherFile);
-
-        return !this.fileInformation.equals(fileInformation);
-    }
-
     public boolean isDifferent(URL otherURL) {
         FileInformation fileInfo = readFileInformation(otherURL);
 
