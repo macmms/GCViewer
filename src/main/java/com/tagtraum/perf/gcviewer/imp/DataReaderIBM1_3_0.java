@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.util.NumberParser;
 
 /**
@@ -43,7 +40,7 @@ public class DataReaderIBM1_3_0 extends AbstractDataReader {
                     case 0:
                         if (line.indexOf("Allocation Failure.") != -1) {
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.FULL_GC);
+                            event.setType(Type.FULL_GC);
                             event.setTimestamp(lastEvent.getTimestamp() + parseTimeSinceLastAF(line));
                             state++;
                             break;

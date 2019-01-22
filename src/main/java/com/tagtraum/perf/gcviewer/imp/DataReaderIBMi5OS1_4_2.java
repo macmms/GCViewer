@@ -8,10 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.util.NumberParser;
 
 /**
@@ -73,7 +70,7 @@ public class DataReaderIBMi5OS1_4_2 extends AbstractDataReader {
                         if (line.indexOf("GC:") != -1) {
                         	// This is the start of the GC log
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.GC);
+                            event.setType(Type.GC);
                             event.setPreUsed(parseInitialHeap(line));
                             event.setPostUsed(event.getPreUsed());
                             event.setTotal(event.getPreUsed());
@@ -85,7 +82,7 @@ public class DataReaderIBMi5OS1_4_2 extends AbstractDataReader {
                         else if (line.indexOf("collection starting") != -1) {
                         	// This is the start of a GC event
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.GC);
+                            event.setType(Type.GC);
                             final long time = parseGCCycleStart(line);
                             if (basetime == 0) basetime = time;
                             event.setTimestamp((time - basetime)/1000.0d);

@@ -19,8 +19,7 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import com.tagtraum.perf.gcviewer.model.GCResource;
@@ -187,7 +186,7 @@ public class DataReaderIBM_J9_R28 extends AbstractDataReader {
             UnknownGcTypeException {
 
         String typeName = eventNameStart + getAttributeValue(startElement, "type");
-        AbstractGCEvent.Type type = Type.lookup(typeName);
+        Type type = Type.lookup(typeName);
         if (type == null) {
             throw new UnknownGcTypeException(typeName, startElement.toString());
         }

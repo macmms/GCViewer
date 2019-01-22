@@ -15,10 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.util.NumberParser;
 
 /**
@@ -57,14 +54,14 @@ public class DataReaderIBM1_4_2 extends AbstractDataReader {
                     case 0:
                         if (line.indexOf("Allocation Failure.") != -1) {
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.FULL_GC);
+                            event.setType(Type.FULL_GC);
                             event.setTimestamp(lastEvent.getTimestamp() + parseTimeSinceLastAF(line));
                             // stay in state 0
                             break;
                         }
                         else if (line.indexOf("GC cycle started") != -1) { // can apparently occur without AF
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.FULL_GC);
+                            event.setType(Type.FULL_GC);
                             final long time = parseGCCycleStart(line);
                             if (basetime == 0) basetime = time;
                             event.setTimestamp((time - basetime)/1000.0d);
@@ -73,7 +70,7 @@ public class DataReaderIBM1_4_2 extends AbstractDataReader {
                         }
                         else if (line.indexOf("managing allocation failure, action=3") != -1) {
                             event = new GCEvent();
-                            event.setType(AbstractGCEvent.Type.FULL_GC);
+                            event.setType(Type.FULL_GC);
                             event.setTimestamp(lastEvent.getTimestamp() + lastEvent.getPause());
                             event.setPreUsed(parsePreUsedAFAction3(line));
                             event.setPostUsed(event.getPreUsed());

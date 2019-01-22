@@ -5,11 +5,8 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Generation;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
 import com.tagtraum.perf.gcviewer.util.NumberParser;
 
 /**
@@ -137,7 +134,7 @@ public class DataReaderJRockit1_5_0 extends AbstractDataReader {
                 final int typeStart = skipSpaces(colon+1, line);
                 int typeEnd = typeStart;
                 while (!Character.isDigit(line.charAt(++typeEnd))) {}
-                final AbstractGCEvent.Type type = AbstractGCEvent.Type.lookup("jrockit." + line.substring(typeStart, typeEnd).trim());
+                final Type type = Type.lookup("jrockit." + line.substring(typeStart, typeEnd).trim());
                 if (type == null) {
                     if (getLogger().isLoggable(Level.INFO)) getLogger().info("Failed to determine type: " + line.substring(startTimeIndex));
                     continue;

@@ -1,6 +1,5 @@
 package com.tagtraum.perf.gcviewer.model;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
 import org.junit.Test;
 
 import java.io.File;

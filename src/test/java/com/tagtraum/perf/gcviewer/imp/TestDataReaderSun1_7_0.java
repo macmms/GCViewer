@@ -15,11 +15,7 @@ import java.util.logging.Level;
 
 import com.tagtraum.perf.gcviewer.UnittestHelper;
 import com.tagtraum.perf.gcviewer.UnittestHelper.FOLDER;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
-import com.tagtraum.perf.gcviewer.model.GcResourceFile;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.util.DateHelper;
 import org.junit.Test;
 
@@ -387,7 +383,7 @@ public class TestDataReaderSun1_7_0 {
         assertThat("ParNew timestamp", model.get(0).getTimestamp(), closeTo(33395.153, 0.00001));
         assertThat("is 'Total time...'",
                 model.get(1).getExtendedType().getName(),
-                equalTo(AbstractGCEvent.Type.APPLICATION_STOPPED_TIME.getName()));
+                equalTo(Type.APPLICATION_STOPPED_TIME.getName()));
         assertThat("Application Stopped timestamp",
                 model.get(1).getTimestamp(),
                 closeTo(33395.153 + 0.1120380, 0.0000001));

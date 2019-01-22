@@ -8,6 +8,7 @@ import java.awt.RenderingHints;
 import java.util.Iterator;
 
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.view.ChartRenderer;
 import com.tagtraum.perf.gcviewer.view.ModelChartImpl;
 import com.tagtraum.perf.gcviewer.model.VmOperationEvent;
@@ -70,7 +71,7 @@ public class GCRectanglesRenderer extends ChartRenderer {
                     else if (event.isRemark()) {
                         g2d.setPaint(Color.ORANGE);
                     }
-                    else if (event.getExtendedType().getType() == AbstractGCEvent.Type.INC_GC) {
+                    else if (event.getExtendedType().getType() == Type.INC_GC) {
                         g2d.setPaint(brighter);
                     }
                     else if (event instanceof VmOperationEvent) {

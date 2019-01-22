@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.*;
 import com.tagtraum.perf.gcviewer.util.ParseInformation;
 
 /**
@@ -80,13 +77,13 @@ public class DataReaderSun1_3_1 extends AbstractDataReaderSun {
             StringTokenizer st = new StringTokenizer(line, " ,->()K\r\n");
             String token = st.nextToken();
             if (token.equals("Full") && st.nextToken().equals("GC")) {
-                event.setType(AbstractGCEvent.Type.FULL_GC);
+                event.setType(Type.FULL_GC);
             }
             else if (token.equals("Inc") && st.nextToken().equals("GC")) {
-                event.setType(AbstractGCEvent.Type.INC_GC);
+                event.setType(Type.INC_GC);
             }
             else if (token.equals("GC")) {
-                event.setType(AbstractGCEvent.Type.GC);
+                event.setType(Type.GC);
             }
             else {
                 throw new ParseException("Error parsing entry: " + line);

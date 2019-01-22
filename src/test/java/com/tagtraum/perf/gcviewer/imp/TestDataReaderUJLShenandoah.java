@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 import com.tagtraum.perf.gcviewer.UnittestHelper;
 import com.tagtraum.perf.gcviewer.UnittestHelper.FOLDER;
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.model.ConcurrentGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
@@ -111,10 +111,10 @@ public class TestDataReaderUJLShenandoah {
         assertThat("amount of concurrent pause types", model.getConcurrentEventPauses().size(), is(5));
 
         GCEvent event = (GCEvent) model.get(0);
-        assertThat("type", event.getTypeAsString(), is(AbstractGCEvent.Type.UJL_SHEN_INIT_MARK.toString()));
+        assertThat("type", event.getTypeAsString(), is(Type.UJL_SHEN_INIT_MARK.toString()));
 
         ConcurrentGCEvent event2 = (ConcurrentGCEvent) model.get(1);
-        assertThat("type", event2.getTypeAsString(), is(AbstractGCEvent.Type.UJL_SHEN_CONCURRENT_CONC_MARK.toString()));
+        assertThat("type", event2.getTypeAsString(), is(Type.UJL_SHEN_CONCURRENT_CONC_MARK.toString()));
         assertThat("preUsed heap size", event2.getPreUsed(), is(90 * 1024));
         assertThat("postUsed heap size", event2.getPostUsed(), is(90 * 1024));
         assertThat("total heap size", event2.getTotal(), is(128 * 1024));
@@ -167,14 +167,14 @@ public class TestDataReaderUJLShenandoah {
         assertThat("datestamp", event.getDatestamp(), is(ZonedDateTime.parse("2017-08-30T23:22:47.357+0300",
                 DateHelper.DATE_TIME_FORMATTER)));
         assertThat("timestamp", event.getTimestamp(), is(0.0));
-        assertThat("type", event.getTypeAsString(), is(AbstractGCEvent.Type.UJL_SHEN_INIT_MARK.toString()));
+        assertThat("type", event.getTypeAsString(), is(Type.UJL_SHEN_INIT_MARK.toString()));
         assertThat("generation", event.getGeneration(), is(AbstractGCEvent.Generation.TENURED));
 
         ConcurrentGCEvent event2 = (ConcurrentGCEvent) model.get(1);
         assertThat("datestamp", event.getDatestamp(), is(ZonedDateTime.parse("2017-08-30T23:22:47.357+0300",
                 DateHelper.DATE_TIME_FORMATTER)));
         assertThat("timestamp", event2.getTimestamp(), closeTo(0.003, 0.001));
-        assertThat("type", event2.getTypeAsString(), is(AbstractGCEvent.Type.UJL_SHEN_CONCURRENT_CONC_MARK.toString()));
+        assertThat("type", event2.getTypeAsString(), is(Type.UJL_SHEN_CONCURRENT_CONC_MARK.toString()));
         assertThat("preUsed heap size", event2.getPreUsed(), is(90 * 1024));
         assertThat("postUsed heap size", event2.getPostUsed(), is(90 * 1024));
         assertThat("total heap size", event2.getTotal(), is(128 * 1024));

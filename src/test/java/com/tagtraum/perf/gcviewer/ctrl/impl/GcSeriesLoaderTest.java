@@ -20,12 +20,7 @@ import com.tagtraum.perf.gcviewer.UnittestHelper;
 import com.tagtraum.perf.gcviewer.UnittestHelper.FOLDER;
 import com.tagtraum.perf.gcviewer.imp.DataReaderException;
 import com.tagtraum.perf.gcviewer.imp.DataReaderFacade;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.GCEvent;
-import com.tagtraum.perf.gcviewer.model.GCModel;
-import com.tagtraum.perf.gcviewer.model.GCResource;
-import com.tagtraum.perf.gcviewer.model.GcResourceFile;
-import com.tagtraum.perf.gcviewer.model.GcResourceSeries;
+import com.tagtraum.perf.gcviewer.model.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -125,7 +120,7 @@ public class GcSeriesLoaderTest {
     @Test
     public void getCreationDate_WhenDateStampIsAvailable() throws Exception {
         GCModel withDatestamp = new GCModel();
-        GCEvent event = new GCEvent(1.0, 0, 0, 0, 0.0, AbstractGCEvent.Type.GC);
+        GCEvent event = new GCEvent(1.0, 0, 0, 0, 0.0, Type.GC);
         ZonedDateTime datestamp = ZonedDateTime.now();
         event.setDateStamp(datestamp);
         withDatestamp.add(event);
@@ -137,7 +132,7 @@ public class GcSeriesLoaderTest {
     public void getCreationDate_WhenTimeStampIsAvailable() throws Exception {
         GCModel withTimestamp = new GCModel();
         double timestamp = 13.37;
-        GCEvent event = new GCEvent(timestamp, 0, 0, 0, 0.0, AbstractGCEvent.Type.GC);
+        GCEvent event = new GCEvent(timestamp, 0, 0, 0, 0.0, Type.GC);
         withTimestamp.add(event);
 
         assertThat(loader.getCreationDate(withTimestamp), is(new GcSeriesLoader.GcTimeStamp(timestamp)));
