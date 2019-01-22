@@ -29,8 +29,6 @@ public abstract class AbstractGCModelLoaderImpl extends SwingWorker<GCModel, Obj
 
         try {
             getGcResource().setModel(get());
-            // TODO delete
-            getGcResource().getModel().printDetailedInformation();
         }
         catch (InterruptedException e) {
             logger.log(Level.FINE, "model get() interrupted", e);

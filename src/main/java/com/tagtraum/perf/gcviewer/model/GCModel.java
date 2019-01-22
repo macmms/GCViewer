@@ -246,43 +246,6 @@ public class GCModel implements Serializable {
         return url;
     }
 
-    private void printPauseMap(Map<String, DoubleData> pauseMap) {
-        for (Map.Entry<String, DoubleData> entry : pauseMap.entrySet()) {
-            System.out.println(entry.getKey() + " [n, avg, sum, min, max]:\t" + entry.getValue().getN() + "\t" + entry.getValue().average() + "\t" + entry.getValue().getSum() + "\t" + entry.getValue().getMin() + "\t" + entry.getValue().getMax());
-        }
-    }
-
-    private void printIntData(String name, IntData data) {
-        try {
-            System.out.println(name + " (n, avg, stddev, min, max):\t" + data.getN() + "\t" + data.average() + "\t" + data.standardDeviation() + "\t" + data.getMin() + "\t" + data.getMax());
-        } catch (IllegalStateException e) {
-            System.out.println(name + "\t" + e.toString());
-        }
-    }
-
-    private void printDoubleData(String name, DoubleData data) {
-        try {
-            System.out.println(name + " (n, avg, stddev, min, max):\t" + data.getN() + "\t" + data.average() + "\t" + data.standardDeviation() + "\t" + data.getMin() + "\t" + data.getMax());
-        } catch (IllegalStateException e) {
-            System.out.println(name + "\t" + e.toString());
-        }
-    }
-
-    public void printDetailedInformation() {
-        // TODO delete
-        printPauseMap(gcEventPauses);
-        printPauseMap(fullGcEventPauses);
-        printPauseMap(concurrentGcEventPauses);
-        printPauseMap(vmOperationEventPauses);
-
-        printDoubleData("initiatingOccupancyFraction", initiatingOccupancyFraction);
-
-        printIntData("heap size used", heapUsedSizes);
-        printIntData("perm size used", permUsedSizes);
-        printIntData("tenured size used", tenuredUsedSizes);
-        printIntData("young size used", youngUsedSizes);
-    }
-
     private FileInformation readFileInformation(URL url) {
         FileInformation fileInformation = new FileInformation();
         URLConnection urlConnection;
