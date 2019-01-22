@@ -320,12 +320,6 @@ public abstract class AbstractGCEvent<T extends AbstractGCEvent<T>> implements S
                 || getTypeAsString().indexOf(Type.UJL_SHEN_FINAL_MARK.getName()) >= 0;
     }
 
-    public boolean hasPause() {
-        return getExtendedType().getPattern().equals(GcPattern.GC_MEMORY_PAUSE)
-                || getExtendedType().getPattern().equals(GcPattern.GC_PAUSE)
-                || getExtendedType().getPattern().equals(GcPattern.GC_PAUSE_DURATION);
-    }
-
     public boolean isCycleStart() {
         return Type.UJL_ZGC_GARBAGE_COLLECTION.equals(getExtendedType().getType());
     }
@@ -396,7 +390,6 @@ public abstract class AbstractGCEvent<T extends AbstractGCEvent<T>> implements S
                 WRAPPER_MAP.put(fullName, extType);
             }
 
-
             return extType;
         }
 
@@ -438,7 +431,6 @@ public abstract class AbstractGCEvent<T extends AbstractGCEvent<T>> implements S
 
         @Override
         public int hashCode() {
-
             return Objects.hash(fullName);
         }
 
@@ -701,7 +693,6 @@ public abstract class AbstractGCEvent<T extends AbstractGCEvent<T>> implements S
         public static final Type IBM_TENURE = new Type("tenure", Generation.TENURED);
 
         public static final Type IBM_CONCURRENT_COLLECTION_START = new Type("concurrent-collection-start", Generation.ALL, Concurrency.CONCURRENT);
-
     }
 
     /**

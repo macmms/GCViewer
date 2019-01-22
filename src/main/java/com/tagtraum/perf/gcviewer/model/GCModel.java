@@ -417,9 +417,7 @@ public class GCModel implements Serializable {
 
     private void addGcEvent(GCEvent event) {
         updateHeapSizes(event);
-
         updateGcPauseInterval(event);
-
         updatePromotion(event);
 
         if (event.isInitialMark()) {
