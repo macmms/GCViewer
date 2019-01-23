@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import com.tagtraum.perf.gcviewer.exp.AbstractDataWriter;
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Generation;
+import com.tagtraum.perf.gcviewer.model.Generation;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 
 /**

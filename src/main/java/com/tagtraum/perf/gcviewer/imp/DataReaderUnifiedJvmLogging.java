@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Concurrency;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.GcPattern;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
+import com.tagtraum.perf.gcviewer.model.Concurrency;
+import com.tagtraum.perf.gcviewer.model.GcPattern;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.model.ConcurrentGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEventUJL;
@@ -517,7 +517,7 @@ public class DataReaderUnifiedJvmLogging extends AbstractDataReader {
         Matcher phaseStringMatcher = line != null ? PATTERN_INCLUDE_STRINGS_PHASE.matcher(line) : null;
         if (phaseStringMatcher != null && phaseStringMatcher.find()) {
             String phaseType = phaseStringMatcher.group(GROUP_DECORATORS_GC_TYPE);
-            if (phaseType != null && AbstractGCEvent.Type.lookup(phaseType) != null) {
+            if (phaseType != null && Type.lookup(phaseType) != null) {
                 return true;
             }
         }

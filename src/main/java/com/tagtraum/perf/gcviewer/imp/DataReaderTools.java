@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.ExtendedType;
+import com.tagtraum.perf.gcviewer.model.Type;
 
 /**
  * Tools useful for (most) DataReader implementations.
@@ -80,13 +80,13 @@ public class DataReaderTools {
         ExtendedType extendedType = null;
         String lookupTypeName = getLookupTypeName(typeName);
         
-        AbstractGCEvent.Type gcType = AbstractGCEvent.Type.lookup(lookupTypeName);
+        Type gcType = Type.lookup(lookupTypeName);
         // the gcType may be null because there was a PrintGCCause flag enabled - if so, reparse it with the first paren set stripped
         if (gcType == null) {
             // try to parse it again with the parents removed
             Matcher parentMatcher = parenthesesPattern.matcher(lookupTypeName);
             if (parentMatcher.find()) {
-                gcType = AbstractGCEvent.Type.lookup(parentMatcher.replaceFirst(""));
+                gcType = Type.lookup(parentMatcher.replaceFirst(""));
             }
         }
 

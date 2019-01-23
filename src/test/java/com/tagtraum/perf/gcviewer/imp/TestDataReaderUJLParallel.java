@@ -8,8 +8,8 @@ import java.io.IOException;
 import com.tagtraum.perf.gcviewer.UnittestHelper;
 import com.tagtraum.perf.gcviewer.UnittestHelper.FOLDER;
 import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Generation;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
+import com.tagtraum.perf.gcviewer.model.Generation;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import org.junit.Test;
 

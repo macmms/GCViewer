@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
 
+import com.tagtraum.perf.gcviewer.model.Type;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.tagtraum.perf.gcviewer.exp.impl.SimpleGcWriter;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
 import com.tagtraum.perf.gcviewer.model.ConcurrentGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
@@ -36,17 +36,17 @@ public class SimpleGcWriterTest {
 //       (concurrent mode failure): 91890K->20323K(131072K), 0.0186232 secs] 209896K->20323K(249088K), [CMS Perm : 2561K->2560K(21248K)], 0.0187293 secs] [Times: user=0.01 sys=0.00, real=0.02 secs] 
 //      0.877: [GC 0.877: [ParNew: 104960K->13040K(118016K), 0.0256080 secs] 125283K->78706K(249088K), 0.0256748 secs] [Times: user=0.08 sys=0.00, real=0.03 secs] 
 
-        GCEvent gcEvent = new GCEvent(0.677, 175499, 104936, 249088, 0.0300629, AbstractGCEvent.Type.GC);
-        GCEvent parNew = new GCEvent(0.677, 118010, 13046, 118016, 0.0299506, AbstractGCEvent.Type.PAR_NEW);
+        GCEvent gcEvent = new GCEvent(0.677, 175499, 104936, 249088, 0.0300629, Type.GC);
+        GCEvent parNew = new GCEvent(0.677, 118010, 13046, 118016, 0.0299506, Type.PAR_NEW);
         gcEvent.add(parNew);
 
-        GCEvent gcEvent2 = new GCEvent(0.708, 109176, 109176, 249088, 0.0004006, AbstractGCEvent.Type.GC);
-        GCEvent initialMark = new GCEvent(0.708, 91890, 91890, 131072, 0, AbstractGCEvent.Type.CMS_INITIAL_MARK);
+        GCEvent gcEvent2 = new GCEvent(0.708, 109176, 109176, 249088, 0.0004006, Type.GC);
+        GCEvent initialMark = new GCEvent(0.708, 91890, 91890, 131072, 0, Type.CMS_INITIAL_MARK);
         gcEvent2.add(initialMark);
         
         ConcurrentGCEvent concGCEvent = new ConcurrentGCEvent();
         concGCEvent.setTimestamp(0.708);
-        concGCEvent.setType(AbstractGCEvent.Type.CMS_CONCURRENT_MARK_START);
+        concGCEvent.setType(Type.CMS_CONCURRENT_MARK_START);
         
         gcModel = new GCModel();
         gcModel.add(gcEvent);

@@ -6,8 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
-import com.tagtraum.perf.gcviewer.model.AbstractGCEvent.Type;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import com.tagtraum.perf.gcviewer.model.GCResource;
@@ -101,7 +100,7 @@ public class DataReaderHPUX1_2 extends AbstractDataReader {
 
                 // Since we don't distinguish between survivor spaces and eden, we add things up.
                 GCEvent newEvent = new GCEvent();
-                newEvent.setType(AbstractGCEvent.Type.DEF_NEW);
+                newEvent.setType(Type.DEF_NEW);
                 newEvent.setPreUsed((int)((survivorBefore + edenBefore) / 1024));
                 newEvent.setPostUsed((int)((survivorAfter + edenAfter) / 1024));
                 newEvent.setTotal((int)((survivorCapacity + edenCapacity) / 1024));
@@ -114,7 +113,7 @@ public class DataReaderHPUX1_2 extends AbstractDataReader {
                 final long oldAfter = Long.parseLong(st.nextToken());
                 final long oldCapacity = Long.parseLong(st.nextToken());
                 GCEvent oldEvent = new GCEvent();
-                oldEvent.setType(AbstractGCEvent.Type.TENURED);
+                oldEvent.setType(Type.TENURED);
                 oldEvent.setPreUsed((int)(oldBefore / 1024));
                 oldEvent.setPostUsed((int)(oldAfter / 1024));
                 oldEvent.setTotal((int)(oldCapacity / 1024));
@@ -127,7 +126,7 @@ public class DataReaderHPUX1_2 extends AbstractDataReader {
                 final long permAfter = Long.parseLong(st.nextToken());
                 final long permCapacity = Long.parseLong(st.nextToken());
                 GCEvent permEvent = new GCEvent();
-                permEvent.setType(AbstractGCEvent.Type.PERM);
+                permEvent.setType(Type.PERM);
                 permEvent.setPreUsed((int)(permBefore / 1024));
                 permEvent.setPostUsed((int)(permAfter / 1024));
                 permEvent.setTotal((int)(permCapacity / 1024));

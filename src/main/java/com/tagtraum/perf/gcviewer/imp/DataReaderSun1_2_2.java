@@ -9,6 +9,7 @@ import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.Type;
 
 /**
  * Parses -verbose:gc output from Sun JDK 1.2.2.
@@ -54,7 +55,7 @@ public class DataReaderSun1_2_2 extends AbstractDataReader {
                         event.setPostUsed((int)((incTo * percentUsed / 1024L / 100l)));
                         event.setPreUsed(event.getPostUsed());
                         event.setTotal((int)(incTo / 1024L));
-                        event.setType(AbstractGCEvent.Type.GC);
+                        event.setType(Type.GC);
                         event.setPause(0);
                         model.add(event);
                         lastEvent = event;
@@ -78,7 +79,7 @@ public class DataReaderSun1_2_2 extends AbstractDataReader {
                         event.setPreUsed((total - postFree + freed) / 1024);
                         //event.setPostUsed(event.getPreUsed());
                         event.setTotal(total / 1024);
-                        event.setType(AbstractGCEvent.Type.GC);
+                        event.setType(Type.GC);
                         event.setPause((pause) / 1000.0d);
                         model.add(event);
                         lastEvent = event;

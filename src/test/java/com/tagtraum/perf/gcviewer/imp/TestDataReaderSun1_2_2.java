@@ -4,6 +4,7 @@ import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import com.tagtraum.perf.gcviewer.model.GcResourceFile;
+import com.tagtraum.perf.gcviewer.model.Type;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -21,11 +22,11 @@ public class TestDataReaderSun1_2_2 {
 
     @Test
     public void testParse1() throws Exception {
-        AbstractGCEvent<GCEvent> event1 = new GCEvent(0, 817, 187, 819, 0.008, AbstractGCEvent.Type.GC);
+        AbstractGCEvent<GCEvent> event1 = new GCEvent(0, 817, 187, 819, 0.008, Type.GC);
         event1.getGeneration();
-        AbstractGCEvent<GCEvent> event2 = new GCEvent(0.02, 775, 188, 819, 0.005, AbstractGCEvent.Type.GC);
+        AbstractGCEvent<GCEvent> event2 = new GCEvent(0.02, 775, 188, 819, 0.005, Type.GC);
         event2.getGeneration();
-        AbstractGCEvent<GCEvent> event3 = new GCEvent(0.741, 1213, 1213, 1639, 0.0, AbstractGCEvent.Type.GC);
+        AbstractGCEvent<GCEvent> event3 = new GCEvent(0.741, 1213, 1213, 1639, 0.0, Type.GC);
         event3.getGeneration();
         ByteArrayInputStream in = new ByteArrayInputStream(("<GC: 0 milliseconds since last GC>\n" +
                 "<GC: freed 2807 objects, 645224 bytes in 8 ms, 77% free (646672/838856)>\n" +

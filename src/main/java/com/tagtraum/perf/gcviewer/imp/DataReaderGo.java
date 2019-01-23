@@ -4,6 +4,7 @@ import com.tagtraum.perf.gcviewer.model.AbstractGCEvent;
 import com.tagtraum.perf.gcviewer.model.GCEvent;
 import com.tagtraum.perf.gcviewer.model.GCModel;
 import com.tagtraum.perf.gcviewer.model.GCResource;
+import com.tagtraum.perf.gcviewer.model.Type;
 import com.tagtraum.perf.gcviewer.util.ParseInformation;
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,6 +85,6 @@ public class DataReaderGo extends AbstractDataReader {
         int postUsed = Integer.parseInt(matcher.group(14)) * 1024;
 
         double pause = stopTheWorld1Time + stopTheWorld2Time;
-        return new GCEvent(relativeTime, preUsed, postUsed, alive, pause, AbstractGCEvent.Type.GC);
+        return new GCEvent(relativeTime, preUsed, postUsed, alive, pause, Type.GC);
     }
 }
